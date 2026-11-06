@@ -1,0 +1,25 @@
+[project]
+name = "jev-fraud"
+version = "0.1.0"
+description = "Credit card fraud classification: classical ML vs Typesafe JEV (System One) vs Claude LLM"
+requires-python = ">=3.10"
+dependencies = [
+  "langchain-typesafe>=0.0.1a3",
+  "anthropic>=1.14",
+  "pandas",
+  "numpy",
+  "scikit-learn",
+  "matplotlib",
+  "python-dotenv",
+  "openai",
+  "google-genai",
+  "truststore",
+  "pydantic",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

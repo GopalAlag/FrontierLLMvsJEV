@@ -1,0 +1,356 @@
+You are a credit card fraud analyst. For each transaction, return a label ('fraud' or 'legit'), a calibrated fraud probability between 0 and 1, and a one-sentence reason. Output only the structured verdict.
+
+Domain guidance (apply to every transaction):
+- Real-world fraud is rare (well under 1% of traffic). Default to low probabilities (<0.05)
+  for ordinary purchases; reserve probabilities above 0.5 for transactions with several
+  strong signals.
+- Strong signals: online categories (shopping_net, misc_net) and point-of-sale grocery/gas
+  with large amounts; late-night hours (22:00-03:00); amounts far above typical for the
+  category (e.g. shopping_net over $500, grocery_pos over $300, gas_transport over $100);
+  very large home-to-merchant distance for in-person categories.
+- Weak/neutral signals: gender, age, job, state, city population. Do not infer fraud from
+  demographics alone.
+- Typical legitimate patterns: small recurring purchases (food_dining, entertainment,
+  health_fitness, kids_pets, home, personal_care) during daytime/evening hours.
+- Calibrate: if unsure, output a probability near 0.1-0.3 rather than 0 or 1.
+
+
+Labelled reference examples from historical data (fraud is over-represented here; do not copy these proportions):
+
+### Example 1
+Amount: $56.43
+Merchant: Hammes-Beatty (category: kids_pets)
+Time: Mon 14:00
+Cardholder: M, age 44, job 'Exhibition designer', lives in Mount Saint Joseph, OH (city population 177)
+Distance between cardholder home and merchant: 94.6 km
+Verdict: legit (probability about 0.03)
+
+### Example 2
+Amount: $52.23
+Merchant: Rutherford-Mertz (category: grocery_pos)
+Time: Wed 11:00
+Cardholder: F, age 24, job 'Building surveyor', lives in Cleveland, TX (city population 34,153)
+Distance between cardholder home and merchant: 86.3 km
+Verdict: legit (probability about 0.03)
+
+### Example 3
+Amount: $106.65
+Merchant: Kuphal-Bartoletti (category: misc_net)
+Time: Wed 19:00
+Cardholder: F, age 22, job 'Teacher, early years/pre', lives in Battle Creek, IA (city population 1,075)
+Distance between cardholder home and merchant: 88.3 km
+Verdict: legit (probability about 0.03)
+
+### Example 4
+Amount: $579.71
+Merchant: Tromp Group (category: travel)
+Time: Fri 22:00
+Cardholder: M, age 60, job 'Armed forces training and education officer', lives in Port Costa, CA (city population 198)
+Distance between cardholder home and merchant: 44.0 km
+Verdict: legit (probability about 0.03)
+
+### Example 5
+Amount: $5.15
+Merchant: Kuhic LLC (category: shopping_net)
+Time: Sun 18:00
+Cardholder: F, age 43, job 'Chartered loss adjuster', lives in Tupper Lake, NY (city population 6,120)
+Distance between cardholder home and merchant: 116.4 km
+Verdict: legit (probability about 0.03)
+
+### Example 6
+Amount: $37.04
+Merchant: Hilpert-Conroy (category: kids_pets)
+Time: Mon 15:00
+Cardholder: F, age 48, job 'Drilling engineer', lives in Plantersville, AL (city population 1,412)
+Distance between cardholder home and merchant: 102.0 km
+Verdict: legit (probability about 0.03)
+
+### Example 7
+Amount: $859.23
+Merchant: Mohr Inc (category: shopping_pos)
+Time: Thu 23:00
+Cardholder: M, age 28, job 'Scientist, biomedical', lives in Alexandria, VA (city population 321,490)
+Distance between cardholder home and merchant: 74.4 km
+Verdict: fraud (probability about 0.90)
+
+### Example 8
+Amount: $5.52
+Merchant: Boyer PLC (category: shopping_net)
+Time: Wed 02:00
+Cardholder: M, age 60, job 'Chartered public finance accountant', lives in San Diego, CA (city population 1,241,364)
+Distance between cardholder home and merchant: 66.6 km
+Verdict: legit (probability about 0.03)
+
+### Example 9
+Amount: $1.59
+Merchant: Sporer-Keebler (category: personal_care)
+Time: Tue 15:00
+Cardholder: M, age 38, job 'Paediatric nurse', lives in Chester, MD (city population 5,848)
+Distance between cardholder home and merchant: 113.3 km
+Verdict: legit (probability about 0.03)
+
+### Example 10
+Amount: $1,004.14
+Merchant: Romaguera, Cruickshank and Greenholt (category: shopping_net)
+Time: Wed 23:00
+Cardholder: M, age 63, job 'Hospital doctor', lives in Pembroke, NC (city population 14,783)
+Distance between cardholder home and merchant: 66.5 km
+Verdict: fraud (probability about 0.90)
+
+### Example 11
+Amount: $10.24
+Merchant: McGlynn-Jaskolski (category: misc_pos)
+Time: Sun 17:00
+Cardholder: M, age 22, job 'Materials engineer', lives in Johns Island, SC (city population 20,478)
+Distance between cardholder home and merchant: 91.8 km
+Verdict: legit (probability about 0.03)
+
+### Example 12
+Amount: $709.00
+Merchant: Stehr, Jewess and Schimmel (category: misc_net)
+Time: Sat 23:00
+Cardholder: M, age 30, job 'Development worker, community', lives in West Hartford, VT (city population 140)
+Distance between cardholder home and merchant: 110.6 km
+Verdict: fraud (probability about 0.90)
+
+### Example 13
+Amount: $133.14
+Merchant: Osinski, Ledner and Leuschke (category: grocery_pos)
+Time: Sun 05:00
+Cardholder: F, age 59, job 'Chief Financial Officer', lives in Cromona, KY (city population 502)
+Distance between cardholder home and merchant: 112.8 km
+Verdict: legit (probability about 0.03)
+
+### Example 14
+Amount: $15.38
+Merchant: Kulas Group (category: health_fitness)
+Time: Tue 22:00
+Cardholder: F, age 35, job 'Sports development officer', lives in Tyler, TX (city population 144,160)
+Distance between cardholder home and merchant: 31.2 km
+Verdict: fraud (probability about 0.90)
+
+### Example 15
+Amount: $4.20
+Merchant: Medhurst PLC (category: shopping_net)
+Time: Wed 09:00
+Cardholder: M, age 54, job 'Radiographer, diagnostic', lives in Harrington Park, NJ (city population 4,664)
+Distance between cardholder home and merchant: 88.9 km
+Verdict: legit (probability about 0.03)
+
+### Example 16
+Amount: $823.23
+Merchant: Koelpin and Sons (category: misc_net)
+Time: Thu 21:00
+Cardholder: M, age 32, job 'Trade mark attorney', lives in Wilmette, IL (city population 27,020)
+Distance between cardholder home and merchant: 99.9 km
+Verdict: fraud (probability about 0.90)
+
+### Example 17
+Amount: $355.27
+Merchant: Murray-Smitham (category: grocery_pos)
+Time: Thu 03:00
+Cardholder: M, age 73, job 'Interpreter', lives in Ruth, NV (city population 450)
+Distance between cardholder home and merchant: 75.6 km
+Verdict: fraud (probability about 0.90)
+
+### Example 18
+Amount: $85.86
+Merchant: Bogisich Inc (category: grocery_pos)
+Time: Sun 02:00
+Cardholder: F, age 71, job 'Art gallery manager', lives in Grand Ridge, FL (city population 3,699)
+Distance between cardholder home and merchant: 62.1 km
+Verdict: legit (probability about 0.03)
+
+### Example 19
+Amount: $1.20
+Merchant: Nader-Heller (category: misc_net)
+Time: Fri 05:00
+Cardholder: M, age 71, job 'Nurse, mental health', lives in Roseland, NE (city population 463)
+Distance between cardholder home and merchant: 84.7 km
+Verdict: legit (probability about 0.03)
+
+### Example 20
+Amount: $26.59
+Merchant: Bartoletti and Sons (category: personal_care)
+Time: Sat 15:00
+Cardholder: F, age 29, job 'Comptroller', lives in Cottekill, NY (city population 722)
+Distance between cardholder home and merchant: 60.0 km
+Verdict: legit (probability about 0.03)
+
+### Example 21
+Amount: $240.92
+Merchant: Reilly LLC (category: home)
+Time: Wed 22:00
+Cardholder: F, age 39, job 'Nurse, children's', lives in North Loup, NE (city population 509)
+Distance between cardholder home and merchant: 66.1 km
+Verdict: fraud (probability about 0.90)
+
+### Example 22
+Amount: $2.81
+Merchant: Dickinson Ltd (category: personal_care)
+Time: Thu 15:00
+Cardholder: M, age 20, job 'Clothing/textile technologist', lives in Tekoa, WA (city population 895)
+Distance between cardholder home and merchant: 46.5 km
+Verdict: legit (probability about 0.03)
+
+### Example 23
+Amount: $368.96
+Merchant: Hudson-Ratke (category: grocery_pos)
+Time: Sun 03:00
+Cardholder: F, age 73, job 'Naval architect', lives in Garrattsville, NY (city population 165)
+Distance between cardholder home and merchant: 103.5 km
+Verdict: fraud (probability about 0.90)
+
+### Example 24
+Amount: $37.04
+Merchant: Erdman-Kertzmann (category: gas_transport)
+Time: Tue 07:00
+Cardholder: F, age 28, job 'Lexicographer', lives in Marathon, TX (city population 498)
+Distance between cardholder home and merchant: 72.9 km
+Verdict: legit (probability about 0.03)
+
+### Example 25
+Amount: $1.81
+Merchant: Stehr, Jewess and Schimmel (category: misc_net)
+Time: Sun 04:00
+Cardholder: F, age 38, job 'Forensic psychologist', lives in Thomas, WV (city population 836)
+Distance between cardholder home and merchant: 37.1 km
+Verdict: legit (probability about 0.03)
+
+### Example 26
+Amount: $90.97
+Merchant: Morissette, Weber and Wiegand (category: grocery_net)
+Time: Fri 11:00
+Cardholder: F, age 14, job 'Secondary school teacher', lives in Topeka, KS (city population 163,415)
+Distance between cardholder home and merchant: 65.1 km
+Verdict: legit (probability about 0.03)
+
+### Example 27
+Amount: $8.76
+Merchant: Ritchie, Oberbrunner and Cremin (category: travel)
+Time: Thu 22:00
+Cardholder: M, age 83, job 'Barrister's clerk', lives in Afton, MN (city population 2,916)
+Distance between cardholder home and merchant: 60.6 km
+Verdict: fraud (probability about 0.90)
+
+### Example 28
+Amount: $19.51
+Merchant: Nolan-Williamson (category: kids_pets)
+Time: Thu 23:00
+Cardholder: F, age 15, job 'Secondary school teacher', lives in Topeka, KS (city population 163,415)
+Distance between cardholder home and merchant: 76.9 km
+Verdict: fraud (probability about 0.90)
+
+### Example 29
+Amount: $338.41
+Merchant: Kiehn Inc (category: grocery_pos)
+Time: Fri 02:00
+Cardholder: M, age 64, job 'Network engineer', lives in Kirk, CO (city population 207)
+Distance between cardholder home and merchant: 81.4 km
+Verdict: fraud (probability about 0.90)
+
+### Example 30
+Amount: $25.06
+Merchant: Gleason and Sons (category: kids_pets)
+Time: Mon 12:00
+Cardholder: M, age 22, job 'Librarian, public', lives in Quanah, TX (city population 3,202)
+Distance between cardholder home and merchant: 55.6 km
+Verdict: legit (probability about 0.03)
+
+### Example 31
+Amount: $151.85
+Merchant: Heller, Gutmann and Zieme (category: grocery_pos)
+Time: Fri 08:00
+Cardholder: F, age 53, job 'Insurance underwriter', lives in Clay Center, OH (city population 269)
+Distance between cardholder home and merchant: 94.3 km
+Verdict: legit (probability about 0.03)
+
+### Example 32
+Amount: $64.04
+Merchant: Haag-Blanda (category: food_dining)
+Time: Sat 03:00
+Cardholder: F, age 85, job 'Pilot, airline', lives in Naples, FL (city population 276,002)
+Distance between cardholder home and merchant: 72.2 km
+Verdict: legit (probability about 0.03)
+
+### Example 33
+Amount: $6.95
+Merchant: Hintz, Bauch and Smith (category: health_fitness)
+Time: Sun 22:00
+Cardholder: F, age 48, job 'Health physicist', lives in Newhall, CA (city population 34,882)
+Distance between cardholder home and merchant: 106.0 km
+Verdict: legit (probability about 0.03)
+
+### Example 34
+Amount: $57.24
+Merchant: Dach-Borer (category: grocery_net)
+Time: Sun 06:00
+Cardholder: F, age 36, job 'Civil Service fast streamer', lives in Azusa, CA (city population 59,705)
+Distance between cardholder home and merchant: 88.8 km
+Verdict: legit (probability about 0.03)
+
+### Example 35
+Amount: $2.59
+Merchant: Kuhic LLC (category: shopping_net)
+Time: Sun 21:00
+Cardholder: F, age 47, job 'Water engineer', lives in Heart Butte, MT (city population 743)
+Distance between cardholder home and merchant: 100.5 km
+Verdict: legit (probability about 0.03)
+
+### Example 36
+Amount: $287.62
+Merchant: Rutherford-Mertz (category: grocery_pos)
+Time: Wed 01:00
+Cardholder: M, age 24, job 'Therapist, horticultural', lives in Sula, MT (city population 218)
+Distance between cardholder home and merchant: 75.1 km
+Verdict: fraud (probability about 0.90)
+
+### Example 37
+Amount: $4.52
+Merchant: Sporer-Keebler (category: personal_care)
+Time: Wed 21:00
+Cardholder: F, age 29, job 'Psychotherapist, child', lives in Downsville, NY (city population 1,228)
+Distance between cardholder home and merchant: 95.5 km
+Verdict: legit (probability about 0.03)
+
+### Example 38
+Amount: $1,115.59
+Merchant: Auer-West (category: shopping_net)
+Time: Mon 14:00
+Cardholder: M, age 53, job 'Music tutor', lives in Tyaskin, MD (city population 470)
+Distance between cardholder home and merchant: 111.0 km
+Verdict: fraud (probability about 0.90)
+
+### Example 39
+Amount: $51.35
+Merchant: Shanahan-Lehner (category: personal_care)
+Time: Mon 18:00
+Cardholder: F, age 32, job 'Biomedical scientist', lives in New Ellenton, SC (city population 2,206)
+Distance between cardholder home and merchant: 84.1 km
+Verdict: legit (probability about 0.03)
+
+### Example 40
+Amount: $297.52
+Merchant: Kunze Inc (category: grocery_pos)
+Time: Mon 03:00
+Cardholder: M, age 56, job 'Artist', lives in Stoneham, MA (city population 21,437)
+Distance between cardholder home and merchant: 73.3 km
+Verdict: fraud (probability about 0.90)
+
+### Example 41
+Amount: $8.32
+Merchant: Gerlach Inc (category: shopping_net)
+Time: Mon 03:00
+Cardholder: F, age 55, job 'Clinical research associate', lives in Manchester, MD (city population 11,751)
+Distance between cardholder home and merchant: 50.1 km
+Verdict: legit (probability about 0.03)
+
+### Example 42
+Amount: $39.51
+Merchant: Kunze Inc (category: grocery_pos)
+Time: Fri 06:00
+Cardholder: M, age 15, job 'Accountant, chartered public finance', lives in Milwaukee, WI (city population 817,312)
+Distance between cardholder home and merchant: 75.0 km
+Verdict: legit (probability about 0.03)
+
+Now classify the next transaction the user sends, using the guidance and examples above.

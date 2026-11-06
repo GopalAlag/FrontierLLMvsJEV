@@ -1,0 +1,11 @@
+system,iteration,calibration_calls,eval_calls,errors,input_tokens,cache_read_tokens,cache_write_tokens,output_tokens,cost_usd,eval_latency_p50_s,eval_latency_p95_s
+claude-haiku-5-5_explicit_v1,1,50,250,0,1759077,1685762,5638,21958,0.03531,1.238,1.848
+gpt-6-luna_explicit_v1,1,50,250,0,889215,836602,2798,31449,0.02907,2.681,5.053
+jev_v1,1,50,250,0,1154075,0,0,436336,0.04847,0.187,0.278
+gemini-3.1-flash-lite_explicit_v1,1,50,250,0,754442,705600,0,13203,0.04966,0.95,1.391
+claude-sonnet-5-5_explicit_v1,1,50,250,0,1759377,1686061,5639,20303,0.68969,1.4,2.105
+claude-haiku-5-5_explicit_v2,2,50,250,0,2063267,1988948,6652,23430,0.0392,1.133,1.649
+gpt-6-luna_explicit_v2,2,50,250,0,1057830,1004042,3358,36231,0.0332,2.661,6.728
+jev_v2,2,50,250,0,1275930,0,0,436281,0.05359,0.189,0.272
+gemini-3.1-flash-lite_explicit_v2,2,50,250,0,928214,879300,0,13473,0.05442,0.957,1.44
+claude-sonnet-5-5_explicit_v2,2,50,250,0,2062967,1988649,6651,21222,0.76191,1.453,2.158
