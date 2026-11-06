@@ -33,7 +33,7 @@ AmbiguousRewardsRequest,2,2,4,True
 RewardsProgramEnrollment,2,2,4,True
 RewardsRedemptionRequest,2,2,4,True
 ExternalRewardsProgramLinkingInquiry,2,2,4,True
-POCNightsInquiry,2,2,4,True
+NightsInquiry,2,2,4,True
 InitiateANewBalanceTransfer,2,2,4,True
 StatusOfBalanceTransfer,2,2,4,True
 BalanceTransferGeneralInquiry,2,2,4,True
@@ -57,7 +57,7 @@ DebitCardInquiryManagement,2,2,4,True
 MortgageInquiryManagement,2,2,4,True
 BankAccountInformationManagement,2,2,4,True
 ContactFollowUp,2,2,4,True
-POCShopProgramInquiry,2,2,4,True
+ShopProgramInquiry,2,2,4,True
 DeceasedAccountHolderNotification,2,2,4,True
 CancelBalanceTransfer,2,2,4,True
 CancelAutoPay,2,2,4,True

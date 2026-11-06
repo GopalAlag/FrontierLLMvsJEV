@@ -21,7 +21,7 @@ class Account:
     due_date: str = "November 3rd"
     payoff: float = 1269.87
     apr: float = 21.99
-    last_txns: tuple = (("POC", 48.12), ("POC", 89.99), ("POC", 63.40))
+    last_txns: tuple = (("", 48.12), ("", 89.99), ("", 63.40))
 
 
 @dataclass
@@ -84,7 +84,7 @@ _STATIC = {  # workflow id -> (status, say)
     "wf_rewards_enroll": ("completed", "I've enrolled your card in the rewards program."),
     "wf_rewards_redeem": ("collect_slots", "How would you like to redeem: statement credit, gift card or travel?"),
     "wf_rewards_link": ("completed", "I've sent instructions to link your external rewards program."),
-    "wf_POC_nights": ("completed", "POC Nights offers access to special events; I've texted the details."),
+    "wf_nights": ("completed", "Nights offers access to special events; I've texted the details."),
     "wf_bt_start": ("collect_slots", "What amount would you like to transfer, and from which card?"),
     "wf_bt_status": ("completed", "Your balance transfer is in process and should post in 7 to 10 days."),
     "wf_bt_info": ("completed", "Balance transfers carry a fee and a promotional rate; I can read the current offer."),
@@ -105,7 +105,7 @@ _STATIC = {  # workflow id -> (status, say)
     "wf_debit_transfer": ("completed", "Transferring you to debit card services."),
     "wf_mortgage_transfer": ("completed", "Transferring you to mortgage services."),
     "wf_bank_account": ("collect_slots", "Please provide the new bank routing and account number."),
-    "wf_POC_shop": ("completed", "POC Shop gives offers at partner merchants; I've texted you a link."),
+    "wf_shop": ("completed", "Shop gives offers at partner merchants; I've texted you a link."),
     "wf_deceased": ("collect_slots", "I'm very sorry for your loss. I can start the process; are you an authorized person on the account?"),
     "wf_bt_cancel": ("completed", "I've requested cancellation of your pending balance transfer."),
     "wf_autopay": ("collect_slots", "Would you like to set up, change or cancel automatic payments?"),

@@ -33,7 +33,7 @@ AmbiguousRewardsRequest,wf_rewards_clarify,2,2,4,True,0.0,1.0,1.0,1.0,1.0,1.0,1.
 RewardsProgramEnrollment,wf_rewards_enroll,2,2,4,True,0.5,0.5,0.75,0.75,0.75,0.75,0.7,0.25,0.25,0.75,0.5,0.75,0.5
 RewardsRedemptionRequest,wf_rewards_redeem,2,2,4,True,0.75,0.75,0.75,1.0,0.5,0.5,0.7,0.0,0.25,0.25,0.5,0.25,0.25
 ExternalRewardsProgramLinkingInquiry,wf_rewards_link,2,2,4,True,0.0,0.5,0.5,0.5,0.5,0.5,0.5,0.0,0.5,0.5,0.5,0.5,0.5
-POCNightsInquiry,wf_POC_nights,2,2,4,True,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.0,0.5,0.5,0.5,0.5,0.5
+NightsInquiry,wf_nights,2,2,4,True,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.0,0.5,0.5,0.5,0.5,0.5
 InitiateANewBalanceTransfer,wf_bt_start,2,2,4,True,0.0,0.75,0.5,0.75,0.5,0.5,0.6,0.0,0.5,0.5,0.5,0.25,0.5
 StatusOfBalanceTransfer,wf_bt_status,2,2,4,True,0.25,0.75,0.75,0.75,0.75,0.75,0.75,0.0,0.25,0.5,0.5,0.75,0.75
 BalanceTransferGeneralInquiry,wf_bt_info,2,2,4,True,0.25,0.75,0.75,0.5,0.75,0.75,0.7,0.0,0.0,0.5,0.25,0.5,0.25
@@ -57,7 +57,7 @@ DebitCardInquiryManagement,wf_debit_transfer,2,2,4,True,0.75,0.5,0.5,0.25,0.25,0
 MortgageInquiryManagement,wf_mortgage_transfer,2,2,4,True,0.0,0.5,0.75,0.5,0.5,0.75,0.6,0.0,0.25,0.5,0.5,0.5,0.5
 BankAccountInformationManagement,wf_bank_account,2,2,4,True,0.25,0.25,0.25,0.25,0.25,0.5,0.3,0.0,0.25,0.25,0.25,0.25,0.25
 ContactFollowUp,wf_followup,2,2,4,True,0.0,0.5,0.5,0.5,0.5,0.5,0.5,0.0,0.25,0.25,0.25,0.25,0.25
-POCShopProgramInquiry,wf_POC_shop,2,2,4,True,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.0,0.5,0.5,0.5,0.75,0.5
+ShopProgramInquiry,wf_shop,2,2,4,True,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.0,0.5,0.5,0.5,0.75,0.5
 DeceasedAccountHolderNotification,wf_deceased,2,2,4,True,0.25,0.75,0.5,0.75,0.75,0.75,0.7,0.0,0.25,0.25,0.5,0.5,0.5
 CancelBalanceTransfer,wf_bt_cancel,2,2,4,True,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.0,0.5,0.5,0.5,0.5,0.5
 CancelAutoPay,wf_autopay,2,2,4,True,0.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.75,1.0,1.0,1.0,1.0

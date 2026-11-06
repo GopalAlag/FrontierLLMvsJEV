@@ -141,7 +141,7 @@ Columns: calls per iteration and total (same for every system), then exact-inten
 | RewardsProgramEnrollment             | wf_rewards_enroll     |           2 |           2 |             4 | 50%                | 50%          | 75%                | 75%   | 75%                 | 75%                 | 70%     |
 | RewardsRedemptionRequest             | wf_rewards_redeem     |           2 |           2 |             4 | 75%                | 75%          | 75%                | 100%  | 50%                 | 50%                 | 70%     |
 | ExternalRewardsProgramLinkingInquiry | wf_rewards_link       |           2 |           2 |             4 | 0%                 | 50%          | 50%                | 50%   | 50%                 | 50%                 | 50%     |
-| POCNightsInquiry                    | wf_POC_nights        |           2 |           2 |             4 | 50%                | 50%          | 50%                | 50%   | 50%                 | 50%                 | 50%     |
+| NightsInquiry                    | wf_nights        |           2 |           2 |             4 | 50%                | 50%          | 50%                | 50%   | 50%                 | 50%                 | 50%     |
 | InitiateANewBalanceTransfer          | wf_bt_start           |           2 |           2 |             4 | 0%                 | 75%          | 50%                | 75%   | 50%                 | 50%                 | 60%     |
 | StatusOfBalanceTransfer              | wf_bt_status          |           2 |           2 |             4 | 25%                | 75%          | 75%                | 75%   | 75%                 | 75%                 | 75%     |
 | BalanceTransferGeneralInquiry        | wf_bt_info            |           2 |           2 |             4 | 25%                | 75%          | 75%                | 50%   | 75%                 | 75%                 | 70%     |
@@ -165,7 +165,7 @@ Columns: calls per iteration and total (same for every system), then exact-inten
 | MortgageInquiryManagement            | wf_mortgage_transfer  |           2 |           2 |             4 | 0%                 | 50%          | 75%                | 50%   | 50%                 | 75%                 | 60%     |
 | BankAccountInformationManagement     | wf_bank_account       |           2 |           2 |             4 | 25%                | 25%          | 25%                | 25%   | 25%                 | 50%                 | 30%     |
 | ContactFollowUp                      | wf_followup           |           2 |           2 |             4 | 0%                 | 50%          | 50%                | 50%   | 50%                 | 50%                 | 50%     |
-| POCShopProgramInquiry               | wf_POC_shop          |           2 |           2 |             4 | 75%                | 75%          | 75%                | 75%   | 75%                 | 75%                 | 75%     |
+| ShopProgramInquiry               | wf_shop          |           2 |           2 |             4 | 75%                | 75%          | 75%                | 75%   | 75%                 | 75%                 | 75%     |
 | DeceasedAccountHolderNotification    | wf_deceased           |           2 |           2 |             4 | 25%                | 75%          | 50%                | 75%   | 75%                 | 75%                 | 70%     |
 | CancelBalanceTransfer                | wf_bt_cancel          |           2 |           2 |             4 | 50%                | 50%          | 50%                | 50%   | 50%                 | 50%                 | 50%     |
 | CancelAutoPay                        | wf_autopay            |           2 |           2 |             4 | 0%                 | 100%         | 100%               | 100%  | 100%                | 100%                | 100%    |
@@ -260,7 +260,7 @@ Columns: calls per iteration and total (same for every system), then exact-inten
 | RewardsProgramEnrollment             |             4 | 25%                | 25%          | 75%                | 50%   | 75%                 | 50%                 |
 | RewardsRedemptionRequest             |             4 | 0%                 | 25%          | 25%                | 50%   | 25%                 | 25%                 |
 | ExternalRewardsProgramLinkingInquiry |             4 | 0%                 | 50%          | 50%                | 50%   | 50%                 | 50%                 |
-| POCNightsInquiry                    |             4 | 0%                 | 50%          | 50%                | 50%   | 50%                 | 50%                 |
+| NightsInquiry                    |             4 | 0%                 | 50%          | 50%                | 50%   | 50%                 | 50%                 |
 | InitiateANewBalanceTransfer          |             4 | 0%                 | 50%          | 50%                | 50%   | 25%                 | 50%                 |
 | StatusOfBalanceTransfer              |             4 | 0%                 | 25%          | 50%                | 50%   | 75%                 | 75%                 |
 | BalanceTransferGeneralInquiry        |             4 | 0%                 | 0%           | 50%                | 25%   | 50%                 | 25%                 |
@@ -284,7 +284,7 @@ Columns: calls per iteration and total (same for every system), then exact-inten
 | MortgageInquiryManagement            |             4 | 0%                 | 25%          | 50%                | 50%   | 50%                 | 50%                 |
 | BankAccountInformationManagement     |             4 | 0%                 | 25%          | 25%                | 25%   | 25%                 | 25%                 |
 | ContactFollowUp                      |             4 | 0%                 | 25%          | 25%                | 25%   | 25%                 | 25%                 |
-| POCShopProgramInquiry               |             4 | 0%                 | 50%          | 50%                | 50%   | 75%                 | 50%                 |
+| ShopProgramInquiry               |             4 | 0%                 | 50%          | 50%                | 50%   | 75%                 | 50%                 |
 | DeceasedAccountHolderNotification    |             4 | 0%                 | 25%          | 25%                | 50%   | 50%                 | 50%                 |
 | CancelBalanceTransfer                |             4 | 0%                 | 50%          | 50%                | 50%   | 50%                 | 50%                 |
 | CancelAutoPay                        |             4 | 0%                 | 75%          | 100%               | 100%  | 100%                | 100%                |

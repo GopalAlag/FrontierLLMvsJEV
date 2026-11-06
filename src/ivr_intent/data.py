@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SEED_PATH = ROOT / "data" / "ivr_seed_dataset.jsonl"
 
 _PRE = ["", "", "", "hi ", "yeah ", "um ", "uh yes ", "okay so ", "hello ", "i need to ask about this ", "yes "]
-_SUF = ["", "", "", " please", " thanks", " uh", " i guess", " on my POC card", " on my POC card", " for my POC card", " on my POC card"]
+_SUF = ["", "", "", " please", " thanks", " uh", " i guess", " on my card", " on my card", " for my card", " on my card"]
 _CONFUSE = {"balance": "ballance", "payment": "payments", "due": "do", "card": "car", "rewards": "rewords", "statement": "state meant",
             "activate": "active eight", "address": "a dress", "bill": "build", "charge": "charged", "credit": "created", "fee": "fee's",
             "mail": "male", "agent": "a gent", "points": "point", "travel": "trouble", "interest": "interests", "pay": "pate",
@@ -39,7 +39,7 @@ def load_seeds(path: Path = SEED_PATH) -> pd.DataFrame:
             d = json.loads(line)
             rows.append(dict(intent=d["expected"]["classified_intent"], utterance=d["inputs"]["customer_utterance"],
                              source=d["metadata"].get("source", ""), label_basis=d["metadata"].get("label_basis", "")))
-    return pd.DataFrame(rows)
+    return pd.DataFrame(rows).drop_duplicates(["intent", "utterance"], ignore_index=True)
 
 
 def split_seeds(seeds: pd.DataFrame, split_seed: int = 7) -> dict[str, pd.DataFrame]:
