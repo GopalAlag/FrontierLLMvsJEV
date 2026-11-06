@@ -92,7 +92,7 @@ Caching: rows are suffixed `_implicit` / `_explicit` for Claude, GPT and Gemini.
 | claude-sonnet-5-5_explicit     | PhoneNumberUpdate                | UnclassifiableOther              |       3 |
 | claude-sonnet-5-5_explicit     | AccountNumberInquiry             | AccountQuestion                  |       2 |
 | claude-sonnet-5-5_explicit     | CancelBalanceTransfer            | BalanceTransferGeneralInquiry    |       2 |
-| claude-sonnet-5-5_explicit     | CitiNightsInquiry                | UnclassifiableOther              |       2 |
+| claude-sonnet-5-5_explicit     | POCNightsInquiry                | UnclassifiableOther              |       2 |
 | gemini-3.1-flash-lite_explicit | DamagedCardReplacement           | UnclassifiableOther              |       3 |
 | gemini-3.1-flash-lite_explicit | PhoneNumberUpdate                | UnclassifiableOther              |       3 |
 | gemini-3.1-flash-lite_explicit | AccountNumberInquiry             | AccountQuestion                  |       2 |

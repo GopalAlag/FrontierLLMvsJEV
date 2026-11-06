@@ -59,7 +59,7 @@ _ROWS = [
     ("RewardsProgramEnrollment", "wf_rewards_enroll", "Caller wants to enrol in or sign up for a rewards program."),
     ("RewardsRedemptionRequest", "wf_rewards_redeem", "Caller wants to redeem or spend points / cash back."),
     ("ExternalRewardsProgramLinkingInquiry", "wf_rewards_link", "Caller wants to link the card to an airline, hotel or other external rewards program."),
-    ("CitiNightsInquiry", "wf_citi_nights", "Caller asks about the Citi Nights program."),
+    ("POCNightsInquiry", "wf_POC_nights", "Caller asks about the POC Nights program."),
     ("InitiateANewBalanceTransfer", "wf_bt_start", "Caller wants to start a new balance transfer."),
     ("StatusOfBalanceTransfer", "wf_bt_status", "Caller asks about the status of an existing balance transfer."),
     ("BalanceTransferGeneralInquiry", "wf_bt_info", "General questions about balance transfers, fees, or debt consolidation."),
@@ -84,7 +84,7 @@ _ROWS = [
     ("BankAccountInformationManagement", "wf_bank_account", "Caller wants to update the bank account used for payments."),
     ("ContactFollowUp", "wf_followup", "Caller is returning a call or following up on an email, letter or message from the bank."),
     # ---- intents seen in the second set of screenshots (paired intent + utterance rows) ----
-    ("CitiShopProgramInquiry", "wf_citi_shop", "Caller asks about the Citi Shop program (auto-enrollment, problems, benefits)."),
+    ("POCShopProgramInquiry", "wf_POC_shop", "Caller asks about the POC Shop program (auto-enrollment, problems, benefits)."),
     ("DeceasedAccountHolderNotification", "wf_deceased", "Caller reports that the account holder died or asks to close the account because of a death.",
      "Closing for a death = DeceasedAccountHolderNotification; any other closure = CardAccountClosure."),
     ("CancelBalanceTransfer", "wf_bt_cancel", "Caller wants to cancel, stop or undo a balance transfer."),
