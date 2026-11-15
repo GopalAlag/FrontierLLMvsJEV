@@ -1,0 +1,10 @@
+.venv/
+.env
+data/*
+!data/ivr_seed_dataset.jsonl
+__pycache__/
+.pytest_cache/
+*.egg-info/
+.claude/
+results*/audit.jsonl
+results*/run.log
