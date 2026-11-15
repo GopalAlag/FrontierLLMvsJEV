@@ -21,7 +21,7 @@ class Account:
     due_date: str = "November 3rd"
     payoff: float = 1269.87
     apr: float = 21.99
-    last_txns: tuple = (("", 48.12), ("", 89.99), ("", 63.40))
+    last_txns: tuple = (("Grocery store", 48.12), ("Gas station", 89.99), ("Restaurant", 63.40))
 
 
 @dataclass
